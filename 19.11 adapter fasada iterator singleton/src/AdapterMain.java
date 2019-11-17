@@ -105,35 +105,41 @@ public class AdapterMain {
 		}
 	}
 	
-	public static class XXOkrag{
-		static boolean wyp = false;
-		static double x;
-		static double y;
-		static String kolor = "Bia³y";
+	public class XXOkrag{
+		boolean wyp = false;
+		double x;
+		double y;
+		String kolor = "Bia³y";
+		
+		public XXOkrag(double x, double y) {
+			super();
+			this.x = x;
+			this.y = y;
+		}
 	
-		public static void wyswietlaj() {
+		public void wyswietlaj() {
 			System.out.println("Rysujê okr¹g\nWype³nienie: "+wyp+"\nKolor: "+kolor);
 		}
 		
-		public static void wypelniaj(boolean wp) {
+		public void wypelniaj(boolean wp) {
 			wyp = wp;
 		}
 		
-		public static void usuwaj() {
+		public void usuwaj() {
 			System.out.println("Usuwam okr¹g");
 			
 		}
 		
-		public static void pobierzPolozenie() {
+		public void pobierzPolozenie() {
 			System.out.println("("+x+","+y+")"); 
 		}
 		
-		public static void nadajPolozenie(double x_, double y_) {
+		public void nadajPolozenie(double x_, double y_) {
 			x = x_;
 			y = y_;
 		}
 		
-		public static void ustawKolor(String kolor_) {
+		public void ustawKolor(String kolor_) {
 			kolor = kolor_;
 		}
 		
@@ -143,40 +149,42 @@ public class AdapterMain {
 	}
 	
 	public class Okrag extends Figura{
+		
+		private XXOkrag adaptee;
 
-		public Okrag(double x, double y) {
-			XXOkrag.x = x;
-			XXOkrag.y = y;
+		public Okrag(XXOkrag adaptee) {
+			super();
+			this.adaptee = adaptee;
 		}
 		
 		@Override
 		public void wyswietl() {
-			XXOkrag.wyswietlaj();
+			adaptee.wyswietlaj();
 		}
 
 		@Override
 		public void wypelnij(boolean wyp) {
-			XXOkrag.wypelniaj(wyp);
+			adaptee.wypelniaj(wyp);
 		}
 
 		@Override
 		public void usun() {
-			XXOkrag.usuwaj();
+			adaptee.usuwaj();
 		}
 
 		@Override
 		public void pobierzPolozenie() {
-			XXOkrag.pobierzPolozenie();
+			adaptee.pobierzPolozenie();
 		}
 
 		@Override
 		public void nadajPolozenie(double x, double y) {
-			XXOkrag.nadajPolozenie(x, y);
+			adaptee.nadajPolozenie(x, y);
 		}
 
 		@Override
 		public void nadajKolor(String kolor) {
-			XXOkrag.ustawKolor(kolor);
+			adaptee.ustawKolor(kolor);
 		}
 		
 		
@@ -193,7 +201,7 @@ public class AdapterMain {
 		figury[1] = ad.new Linia(5.0,2.3);
 		figury[2] = ad.new Kwadrat(6.1,7.2);
 		
-		Okrag okrag = ad.new Okrag(11.3,8.0);
+		Okrag okrag = ad.new Okrag(ad.new XXOkrag(11.3,8.0));
 		
 		for(Figura f: figury) {
 			f.nadajKolor("Czarny");
@@ -205,7 +213,7 @@ public class AdapterMain {
 			
 		}
 		
-		okrag.nadajKolor("Zielony");
+		okrag.nadajKolor("Niebieski");
 		okrag.wypelnij(true);
 		okrag.wyswietl();
 		okrag.nadajPolozenie(2.5, 3.7);
