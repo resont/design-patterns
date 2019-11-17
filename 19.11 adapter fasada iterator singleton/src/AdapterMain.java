@@ -149,26 +149,32 @@ public class AdapterMain {
 			XXOkrag.y = y;
 		}
 		
+		@Override
 		public void wyswietl() {
 			XXOkrag.wyswietlaj();
 		}
 
+		@Override
 		public void wypelnij(boolean wyp) {
 			XXOkrag.wypelniaj(wyp);
 		}
 
+		@Override
 		public void usun() {
 			XXOkrag.usuwaj();
 		}
 
+		@Override
 		public void pobierzPolozenie() {
 			XXOkrag.pobierzPolozenie();
 		}
 
+		@Override
 		public void nadajPolozenie(double x, double y) {
 			XXOkrag.nadajPolozenie(x, y);
 		}
 
+		@Override
 		public void nadajKolor(String kolor) {
 			XXOkrag.ustawKolor(kolor);
 		}
@@ -199,7 +205,7 @@ public class AdapterMain {
 			
 		}
 		
-		okrag.nadajKolor("Czarny");
+		okrag.nadajKolor("Zielony");
 		okrag.wypelnij(true);
 		okrag.wyswietl();
 		okrag.nadajPolozenie(2.5, 3.7);
