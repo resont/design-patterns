@@ -195,31 +195,23 @@ public class AdapterMain {
 		
 		AdapterMain ad = new AdapterMain();
 		
-		Figura[] figury = new Figura[3];
+		Figura[] figury = new Figura[4];
 		
 		figury[0] = ad.new Punkt(2.0,3.5);
 		figury[1] = ad.new Linia(5.0,2.3);
 		figury[2] = ad.new Kwadrat(6.1,7.2);
-		
-		Okrag okrag = ad.new Okrag(ad.new XXOkrag(11.3,8.0));
+		figury[3] = ad.new Okrag(ad.new XXOkrag(11.3,8.0));
 		
 		for(Figura f: figury) {
 			f.nadajKolor("Czarny");
 			f.wypelnij(true);
 			f.wyswietl();
-			f.nadajPolozenie(8, 8);
+			f.nadajPolozenie(8.1, 5.4);
 			f.pobierzPolozenie();
 			f.usun();
 			System.out.println();
 			
 		}
-		
-		okrag.nadajKolor("Niebieski");
-		okrag.wypelnij(true);
-		okrag.wyswietl();
-		okrag.nadajPolozenie(2.5, 3.7);
-		okrag.pobierzPolozenie();
-		okrag.usun();
 		
 		
 
