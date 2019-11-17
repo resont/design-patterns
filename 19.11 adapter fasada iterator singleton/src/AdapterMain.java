@@ -209,6 +209,7 @@ public class AdapterMain {
 			f.wyswietl();
 			f.nadajPolozenie(8, 8);
 			f.pobierzPolozenie();
+			f.usun();
 			System.out.println();
 			
 		}
@@ -218,6 +219,7 @@ public class AdapterMain {
 		okrag.wyswietl();
 		okrag.nadajPolozenie(2.5, 3.7);
 		okrag.pobierzPolozenie();
+		okrag.usun();
 		
 		
 
