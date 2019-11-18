@@ -5,7 +5,7 @@ public class SingletonMain {
 		
 		private static Singleton instance;
 		
-		protected Singleton() {
+		private Singleton() {
 			System.out.println("Tworzenie singletona");
 		}
 		

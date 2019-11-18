@@ -1,100 +1,116 @@
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class IteratorMain {
 	
-	public class Tab<Type> implements Iterable<Type> {
-		private Type[] tab;
-		private int size;
-		
-		public Tab(Type[] newTab) {
-			tab = newTab;
-			size = tab.length;
-		}
-		
-		@Override
-		public Iterator<Type> iterator() {
-			Iterator<Type> iter = new Iterator<Type>() {
-				
-				private int i = 0;
-
-				@Override
-				public boolean hasNext() {
-					if(i < size && tab[i] != null) {
-						return true;
-					}else {
-						return false;
-					}
-				}
-
-				@Override
-				public Type next() {
-					return tab[i++];
-				}
-				
-			};
-			return iter;
-		}
-		
- 	}
 	
-	public class NonZeroTab<Type> implements Iterable<Type> {
-		private Type[] tab;
-		private int size;
+	public abstract class Iterator<Type>{
 		
-		public NonZeroTab(Type[] newTab) {
-			tab = newTab;
-			size = tab.length;
+		public abstract void First();
+		public abstract void Next();
+		public abstract boolean IsDone();
+		public abstract Type CurrentItem();
+		protected Iterator() {
+		}
+		
+	}
+	
+	class ArrayIterator<Type> extends Iterator<Type>{
+		
+		private int currentIndex;
+		ArrayList <Type> tab;
+		
+		public ArrayIterator(ArrayList<Type> t) {
+			this.currentIndex = 0;
+			tab = t;
 		}
 		
 		@Override
-		public Iterator<Type> iterator() {
-			Iterator<Type> iter = new Iterator<Type>() {
-				
-				private int i = 0;
-
-				@Override
-				public boolean hasNext() {
-					if(i < size && tab[i] != null) {
-						return true;
-					}else {
-						return false;
-					}
-				}
-
-				@Override
-				public Type next() {
-					if(tab[i].equals(0)) {
-						i++;
-					}
-					return tab[i++];
-				}
-				
-			};
-			return iter;
+		public void First() {
+			this.currentIndex = 0;
 		}
 		
- 	}
+		@Override
+		public void Next() {
+			this.currentIndex++;
+		}
+		
+		@Override
+		public boolean IsDone() {
+			return currentIndex >= tab.size();
+		}
+		
+		@Override
+		public Type CurrentItem() {
+			if(IsDone()) {
+				return null;
+			}
+			return tab.get((int) currentIndex);
+		}
+	
+	}
+	
+	class NonZeroArrayIterator<Type> extends Iterator<Type>{
+		
+		private int currentIndex;
+		ArrayList <Type> tab;
+		
+		public NonZeroArrayIterator(ArrayList<Type> t) {
+			this.currentIndex = 0;
+			tab = t;
+		}
+		
+		@Override
+		public void First() {
+			this.currentIndex = 0;
+		}
+		
+		@Override
+		public void Next() {
+			
+				if(tab.get(currentIndex).equals(0)) {
+					this.currentIndex++;
+				}
+				
+				this.currentIndex++;
+			
+		}
+		
+		@Override
+		public boolean IsDone() {
+			return currentIndex >= tab.size();
+		}
+		
+		@Override
+		public Type CurrentItem() {
+			if(IsDone()) {
+				return null;
+			}
+			return tab.get((int) currentIndex);
+		}
+	
+	}
+	
 
 	public static void main(String[] args) {
 		IteratorMain it = new IteratorMain();
+
+		ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1,3,0,5,0,7,9));
 		
-		Integer[] numbers = new Integer[] {1,3,0,5,0,7,9};
+		ArrayIterator<Integer> tab = it.new ArrayIterator<Integer>(numbers);
 		
-		Tab<Integer> tab = it.new Tab<Integer>(numbers);
-		
-		for(Integer i: tab) {
-			System.out.print(i+" ");
+		for(tab.First();!tab.IsDone();tab.Next()) {
+			System.out.print(tab.CurrentItem()+" ");
 		}
 		
 		System.out.println();
 		
-		NonZeroTab<Integer> tab2 = it.new NonZeroTab<Integer>(numbers);
+		 
+		NonZeroArrayIterator<Integer> tab2 = it.new NonZeroArrayIterator<Integer>(numbers);
 		
-		for(Integer i: tab2) {
-			System.out.print(i+" ");
+		for(tab2.First();!tab2.IsDone();tab2.Next()) {
+			System.out.print(tab2.CurrentItem()+" ");
 		}
-		
-		
 	}
 
 }
