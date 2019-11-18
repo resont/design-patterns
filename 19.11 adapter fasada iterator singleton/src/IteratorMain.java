@@ -45,9 +45,8 @@ public class IteratorMain {
 			if(IsDone()) {
 				return null;
 			}
-			return tab.get((int) currentIndex);
+			return tab.get(currentIndex);
 		}
-	
 	}
 	
 	class NonZeroArrayIterator<Type> extends Iterator<Type>{
@@ -58,6 +57,9 @@ public class IteratorMain {
 		public NonZeroArrayIterator(ArrayList<Type> t) {
 			this.currentIndex = 0;
 			tab = t;
+//			for(int i=t.size()-1;tab.get(i).equals(0);i--) {
+//				tab.remove(i);
+//			}
 		}
 		
 		@Override
@@ -67,13 +69,7 @@ public class IteratorMain {
 		
 		@Override
 		public void Next() {
-			
-				if(tab.get(currentIndex).equals(0)) {
-					this.currentIndex++;
-				}
-				
-				this.currentIndex++;
-			
+			this.currentIndex++;
 		}
 		
 		@Override
@@ -83,10 +79,16 @@ public class IteratorMain {
 		
 		@Override
 		public Type CurrentItem() {
+			
+			while(tab.get(currentIndex).equals(0)) {
+				Next();
+			}
+			
 			if(IsDone()) {
 				return null;
 			}
-			return tab.get((int) currentIndex);
+			
+			return tab.get(currentIndex);
 		}
 	
 	}
@@ -95,7 +97,7 @@ public class IteratorMain {
 	public static void main(String[] args) {
 		IteratorMain it = new IteratorMain();
 
-		ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1,3,0,5,0,7,9));
+		ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1,3,0,0,5,0,7,9,0,0));
 		
 		ArrayIterator<Integer> tab = it.new ArrayIterator<Integer>(numbers);
 		
@@ -105,11 +107,15 @@ public class IteratorMain {
 		
 		System.out.println();
 		
-		 
 		NonZeroArrayIterator<Integer> tab2 = it.new NonZeroArrayIterator<Integer>(numbers);
 		
 		for(tab2.First();!tab2.IsDone();tab2.Next()) {
-			System.out.print(tab2.CurrentItem()+" ");
+			try {
+				System.out.print(tab2.CurrentItem()+" ");
+			}catch(IndexOutOfBoundsException e){
+				break;
+			}
+			
 		}
 	}
 
