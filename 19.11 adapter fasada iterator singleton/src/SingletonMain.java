@@ -20,10 +20,7 @@ public class SingletonMain {
 		public void print() {
 			System.out.println("Test klasy print");
 		}
-		
-		public void print2() {
-			System.out.println("Test klasy print2");
-		}
+
 	}
 
 
@@ -31,11 +28,9 @@ public class SingletonMain {
 		
 		Singleton sg = new Singleton();
 		sg.print();
-		sg.print2();
 		
 		Singleton sg2 = new Singleton();
 		sg2.print();
-		sg2.print2();
 
 	}
 

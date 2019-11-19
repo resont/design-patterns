@@ -142,10 +142,7 @@ public class AdapterMain {
 		public void ustawKolor(String kolor_) {
 			kolor = kolor_;
 		}
-		
-		
-		
-		
+	
 	}
 	
 	public class Okrag extends Figura{
@@ -186,8 +183,6 @@ public class AdapterMain {
 		public void nadajKolor(String kolor) {
 			adaptee.ustawKolor(kolor);
 		}
-		
-		
 		
 	}
 

@@ -5,34 +5,31 @@ public class IteratorMain {
 	
 	
 	public abstract class Iterator<Type>{
-		
+		ArrayList <Type> tab;
 		public abstract void First();
 		public abstract void Next();
 		public abstract boolean IsDone();
 		public abstract Type CurrentItem();
-		protected Iterator() {
-		}
 		
 	}
 	
 	class ArrayIterator<Type> extends Iterator<Type>{
 		
 		private int currentIndex;
-		ArrayList <Type> tab;
 		
 		public ArrayIterator(ArrayList<Type> t) {
-			this.currentIndex = 0;
+			currentIndex = 0;
 			tab = t;
 		}
 		
 		@Override
 		public void First() {
-			this.currentIndex = 0;
+			currentIndex = 0;
 		}
 		
 		@Override
 		public void Next() {
-			this.currentIndex++;
+			currentIndex++;
 		}
 		
 		@Override
@@ -52,10 +49,9 @@ public class IteratorMain {
 	class NonZeroArrayIterator<Type> extends Iterator<Type>{
 		
 		private int currentIndex;
-		ArrayList <Type> tab;
 		
 		public NonZeroArrayIterator(ArrayList<Type> t) {
-			this.currentIndex = 0;
+			currentIndex = 0;
 			tab = t;
 //			for(int i=t.size()-1;tab.get(i).equals(0);i--) {
 //				tab.remove(i);
@@ -64,12 +60,12 @@ public class IteratorMain {
 		
 		@Override
 		public void First() {
-			this.currentIndex = 0;
+			currentIndex = 0;
 		}
 		
 		@Override
 		public void Next() {
-			this.currentIndex++;
+			currentIndex++;
 		}
 		
 		@Override
@@ -93,29 +89,43 @@ public class IteratorMain {
 	
 	}
 	
-
+	class dataStructure<Type>{
+		ArrayList <Type> tab;
+		public dataStructure(ArrayList<Type> t){
+			tab = t;
+		}
+		
+		public ArrayIterator<Type> arrayIterator() {
+			return new ArrayIterator<Type>(tab);
+		}
+		
+		public NonZeroArrayIterator<Type> nonZeroArrayIterator() {
+			return new NonZeroArrayIterator<Type>(tab);
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 		IteratorMain it = new IteratorMain();
 
-		ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1,3,0,0,5,0,7,9,0,0));
+		dataStructure<Integer> c = it.new dataStructure<Integer>(new ArrayList<Integer>(Arrays.asList(1,3,0,0,5,0,7,9,0,0)));
 		
-		ArrayIterator<Integer> tab = it.new ArrayIterator<Integer>(numbers);
-		
+		ArrayIterator<Integer> tab = c.arrayIterator();
+		NonZeroArrayIterator<Integer> tab2 = c.nonZeroArrayIterator();
+	
+		System.out.print("Tablica:\t");
 		for(tab.First();!tab.IsDone();tab.Next()) {
 			System.out.print(tab.CurrentItem()+" ");
 		}
 		
 		System.out.println();
-		
-		NonZeroArrayIterator<Integer> tab2 = it.new NonZeroArrayIterator<Integer>(numbers);
-		
+		System.out.print("Tablica bez 0:\t");
 		for(tab2.First();!tab2.IsDone();tab2.Next()) {
 			try {
 				System.out.print(tab2.CurrentItem()+" ");
-			}catch(IndexOutOfBoundsException e){
+			}catch(IndexOutOfBoundsException e) {
 				break;
 			}
-			
 		}
 	}
 
