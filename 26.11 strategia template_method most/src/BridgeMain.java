@@ -4,10 +4,10 @@ public class BridgeMain {
 	public static void main(String[] args) {
 		
 		Biblioteka bg1 = new BibliotekaV1();
-		Figura f1 = new Prostokat(bg1,1,1,2,2);
-		
 		Biblioteka bg2 = new BibliotekaV2();
-		Figura f2 = new Okrag(bg2,2,2,4);
+		
+		Figura f1 = new Prostokat(bg1,1,3,5,7);
+		Figura f2 = new Okrag(bg2,1,3,5);
 		
 		f1.rysuj();
 		f2.rysuj();
@@ -17,20 +17,20 @@ public class BridgeMain {
 }
 
 interface Biblioteka{
-	public abstract void rysujLinie(double x1, double y1, double x2, double y2);
-	public abstract void rysujOkrag(double x, double y, double r);
+	void rysujLinie(double x1, double y1, double x2, double y2);
+	void rysujOkrag(double x, double y, double r);
 }
 
 class BibliotekaV1 implements Biblioteka{
 
 	@Override
 	public void rysujLinie(double x1, double y1, double x2, double y2) {
-		BG1.narysujLinie(x1, y1, x2, y2);
+		BG1.rysuj_linie(x1, y1, x2, y2);
 	}
 
 	@Override
 	public void rysujOkrag(double x, double y, double r) {
-		BG1.narysujOkrag(x, y, r);	
+		BG1.rysuj_okrag(x, y, r);	
 	}
 	
 }
@@ -50,39 +50,39 @@ class BibliotekaV2 implements Biblioteka{
 }
 
 class BG1{
-	public static void narysujLinie(double x1, double y1, double x2, double y2) {
-		System.out.println("Rysujê linie za pomoc¹ biblioteki graficznej BG1");
+	public static void rysuj_linie(double x1, double y1, double x2, double y2) {
+		System.out.println("Rysujê linie za pomoc¹ biblioteki graficznej BG1: "+x1+", "+y1+", "+x2+", "+y2);
 	}
 	
-	public static void narysujOkrag(double x, double y, double r) {
-		System.out.println("Rysujê okr¹g za pomoc¹ biblioteki graficznej BG1");
+	public static void rysuj_okrag(double x, double y, double r) {
+		System.out.println("Rysujê okr¹g za pomoc¹ biblioteki graficznej BG1: "+x+", "+y+", "+r);
 	}
 }
 
 class BG2{
 	public static void narysujLinie(double x1, double y1, double x2, double y2) {
-		System.out.println("Rysujê linie za pomoc¹ biblioteki graficznej BG2");
+		System.out.println("Rysujê linie za pomoc¹ biblioteki graficznej BG2: "+x1+", "+y1+", "+x2+", "+y2);
 	}
 	
 	public static void narysujOkrag(double x, double y, double r) {
-		System.out.println("Rysujê okr¹g za pomoc¹ biblioteki graficznej BG2");
+		System.out.println("Rysujê okr¹g za pomoc¹ biblioteki graficznej BG2: "+x+", "+y+", "+r);
 	}
 }
 
-class Figura{
+abstract class Figura{
 	private Biblioteka bg;
 	
 	public Figura(Biblioteka bg) {
 		this.bg = bg;
 	}
 	
-	public void rysuj() {}
+	public abstract void rysuj();
 	
-	public void rysujLinie(double x1, double y1, double x2, double y2) {
+	protected void rysujLinie(double x1, double y1, double x2, double y2) {
 		bg.rysujLinie(x1, y1, x2, y2);
 	}
 	
-	public void rysujOkrag(double x, double y, double r) {
+	protected void rysujOkrag(double x, double y, double r) {
 		bg.rysujOkrag(x, y, r);
 	}
 	
