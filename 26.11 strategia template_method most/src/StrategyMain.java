@@ -2,7 +2,6 @@ import java.util.Map;
 
 public class StrategyMain {
 
-	
 	public static void main(String[] args) {
 		Map <String,Double> Artykuly = Map.of("CocaCola",1.99,"Mars",2.99,"KitKat",3.99);
 		Zamowienie zamowienie = new Zamowienie();
