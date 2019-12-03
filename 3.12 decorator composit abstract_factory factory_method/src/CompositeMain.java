@@ -33,15 +33,15 @@ class Line implements Graphic{
 	}
 
 	@Override
-	public void Add(Graphic gr) { // not applicable
+	public void Add(Graphic gr) {
 	}
 
 	@Override
-	public void Remove(Graphic gr) { // not applicable
+	public void Remove(Graphic gr) {
 	}
 
 	@Override
-	public Graphic GetChild(int c) { // not applicable
+	public Graphic GetChild(int c) {
 		return null;
 	}
 }
@@ -54,15 +54,15 @@ class Rectangle implements Graphic{
 	}
 
 	@Override
-	public void Add(Graphic gr) { // not applicable
+	public void Add(Graphic gr) {
 	}
 
 	@Override
-	public void Remove(Graphic gr) { // not applicable
+	public void Remove(Graphic gr) {
 	}
 
 	@Override
-	public Graphic GetChild(int c) { // not applicable
+	public Graphic GetChild(int c) {
 		return null;
 	}
 }
@@ -75,15 +75,15 @@ class Text implements Graphic{
 	}
 
 	@Override
-	public void Add(Graphic gr) { // not applicable
+	public void Add(Graphic gr) { 
 	}
 
 	@Override
-	public void Remove(Graphic gr) { // not applicable
+	public void Remove(Graphic gr) {
 	}
 
 	@Override
-	public Graphic GetChild(int c) { // not applicable
+	public Graphic GetChild(int c) {
 		return null;
 	}
 }
