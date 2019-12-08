@@ -1,5 +1,3 @@
-package Builder;
-
 public class StandardConverter implements TextConverter {
 
 	@Override

@@ -1,5 +1,3 @@
-package Builder;
-
 public class TagWithUppercaseConverter implements TextConverter {
 
 	@Override

@@ -1,5 +1,3 @@
-package Builder;
-
 public class FormatConverter implements TextConverter {
 
 	@Override

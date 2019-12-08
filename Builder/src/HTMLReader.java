@@ -1,5 +1,3 @@
-package Builder;
-
 public class HTMLReader {
 	private String text;
 	private TextConverter tc;
