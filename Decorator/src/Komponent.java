@@ -1,0 +1,3 @@
+interface Komponent{
+	void drukuj();
+}
