@@ -1,5 +1,3 @@
-package Observer;
-
 public class ConcreteObserver implements Observer {
 	private Subject subject = null;
 	

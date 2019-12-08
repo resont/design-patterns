@@ -1,5 +1,3 @@
-package Observer;
-
 public class ConcreteSubject extends Subject {
 	private boolean subjectState = true;
 	
