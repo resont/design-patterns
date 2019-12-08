@@ -1,5 +1,3 @@
-package AbstractFactory;
-
 public class Konfiguracja {
 	public FabrykaSter fabrykaNR() {
 		return new FabrykaNisRozdz();

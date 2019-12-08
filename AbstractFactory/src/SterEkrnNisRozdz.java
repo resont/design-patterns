@@ -1,5 +1,3 @@
-package AbstractFactory;
-
 public class SterEkrnNisRozdz implements SterownikEkranu {
 	@Override
 	public void rysuj() {

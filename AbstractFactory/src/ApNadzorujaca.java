@@ -1,5 +1,3 @@
-package AbstractFactory;
-
 public class ApNadzorujaca {
 	protected FabrykaSter fb;
 	

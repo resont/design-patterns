@@ -1,5 +1,3 @@
-package AbstractFactory;
-
 public class FabrykaNisRozdz implements FabrykaSter {
 
 	@Override
