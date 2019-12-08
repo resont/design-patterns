@@ -30,8 +30,11 @@ public class HTMLReader {
 					i++;
 				}
 				parsedText.append(tc.ConvertTag(tagBefore.toString()));
-				parsedText.append(tc.ConvertCharacter(text.charAt(i)));
-				i++;
+				
+				while(text.charAt(i) != '<') {
+					parsedText.append(tc.ConvertCharacter(text.charAt(i)));
+					i++;
+				}
 				
 				while(text.charAt(i-1) != '>'){
 					tagAfter.append(text.charAt(i));
